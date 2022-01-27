@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
+  // var tMode = "";
+  // if (props.mode === "dark") tMode = "light";
+  // else tMode = "dark";
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav
+      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+    >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="#">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,14 +28,14 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/about">
                 About
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item dropdown">
@@ -64,6 +71,24 @@ export default function Navbar(props) {
               </ul>
             </li>
           </ul>
+          <div
+            className={`form-check form-switch mx-3 text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+          >
+            <input
+              type="checkbox"
+              onClick={props.toggleMode}
+              className="form-check-input"
+              id="flexSwitchCheckDefault"
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Enable {props.mode === "light" ? "dark" : "light"} Mode
+            </label>
+          </div>
         </div>
       </div>
     </nav>
