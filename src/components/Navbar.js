@@ -71,6 +71,40 @@ export default function Navbar(props) {
               </ul>
             </li>
           </ul>
+          <div className="d-flex">
+            <div
+              className="bg-primary rounded mx-2"
+              onClick={() => {
+                props.toggleMode("primary");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+
+            <div
+              className="bg-danger rounded mx-2"
+              onClick={() => {
+                props.toggleMode("danger");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+
+            <div
+              className="bg-success rounded mx-2"
+              onClick={() => {
+                props.toggleMode("success");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+
+            <div
+              className="bg-warning rounded mx-2"
+              onClick={() => {
+                props.toggleMode("warning");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+          </div>
+
           <div
             className={`form-check form-switch mx-3 text-${
               props.mode === "light" ? "dark" : "light"
@@ -78,7 +112,9 @@ export default function Navbar(props) {
           >
             <input
               type="checkbox"
-              onClick={props.toggleMode}
+              onClick={() => {
+                props.toggleMode(null);
+              }}
               className="form-check-input"
               id="flexSwitchCheckDefault"
             />
@@ -86,7 +122,7 @@ export default function Navbar(props) {
               className="form-check-label"
               htmlFor="flexSwitchCheckDefault"
             >
-              Enable {props.mode === "light" ? "dark" : "light"} Mode
+              Toggle Mode
             </label>
           </div>
         </div>

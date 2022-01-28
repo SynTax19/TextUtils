@@ -36,7 +36,7 @@ export default function TextForm(props) {
             className="form-control"
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "light" ? "white" : "grey",
+              backgroundColor: props.mode === "light" ? "white" : "#13466e",
               color: props.mode === "light" ? "black" : "white",
             }}
             value={text}
@@ -44,10 +44,18 @@ export default function TextForm(props) {
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-2"
+          onClick={handleUpClick}
+        >
           Convert UP
         </button>
-        <button className="btn btn-primary mx-2 my-2" onClick={handleLoClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-2"
+          onClick={handleLoClick}
+        >
           Convert LOW
         </button>
       </div>
@@ -59,13 +67,20 @@ export default function TextForm(props) {
       >
         <h2> Your Text Summary </h2>
         <p>
-          <b>{text.split(" ").length - 1}</b> Words and <b>{text.length} </b>{" "}
-          Characters
+          <b>
+            {text.split(" ").filter((element) => element.length !== 0).length}
+          </b>{" "}
+          Words and <b>{text.length} </b> Characters
         </p>
 
-        <p>{0.01 * text.split(" ").length} Minutes read.</p>
+        <p>
+          {0.01 *
+            text.split(" ").filter((element) => element.length !== 0)
+              .length}{" "}
+          Minutes read.
+        </p>
         <h2> Preview </h2>
-        <p> {text.length > 0 ? text : "Enter Something in the Text - Box"} </p>
+        <p> {text.length > 0 ? text : "Nothing to Preview"} </p>
       </div>
     </>
   );
